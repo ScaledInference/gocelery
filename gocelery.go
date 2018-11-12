@@ -120,7 +120,23 @@ func (ar *AsyncResult) Get(timeout time.Duration) (interface{}, error) {
 	}
 }
 
-// AsyncGet gets actual result from redis and returns nil if not available
+func (ar *AsyncResult) Poll(ctx context.Context) (interface{}, error) {
+	ticker := time.NewTicker(50 * time.Millisecond)
+	for {
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		case <-ticker.C:
+			val, err := ar.AsyncGet()
+			if err != nil {
+				continue
+			}
+			return val, nil
+		}
+	}
+}
+
+// AsyncGet gets actual result from the queue and returns nil if not available.
 func (ar *AsyncResult) AsyncGet() (interface{}, error) {
 	if ar.result != nil {
 		return ar.result.Result, nil
