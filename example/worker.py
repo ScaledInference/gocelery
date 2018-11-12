@@ -1,13 +1,13 @@
 from celery import Celery
 
 
-app = Celery('tasks',
-    broker='redis://localhost:6379',
-    backend='redis://localhost:6379'
-)
-
+# app = Celery('tasks',
+#     broker='ampq://localhost:6379',
+#     backend='redis://localhost:6379'
+# )
+#
 # using AMQP instead
-# app = Celery('tasks', backend='amqp://', broker='amqp://')
+app = Celery('worker', backend='ampq://', broker='amqp://')
 
 app.conf.update(
     CELERY_TASK_SERIALIZER='json',
@@ -18,6 +18,7 @@ app.conf.update(
 
 @app.task
 def add(x, y):
+    print(f'ADDING{x}, {y}')
     return x + y
 
 @app.task
