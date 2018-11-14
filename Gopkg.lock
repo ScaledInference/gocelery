@@ -2,14 +2,6 @@
 
 
 [[projects]]
-  branch = "master"
-  digest = "1:2c009a43347d80ee0e6f3a79f0865b4003df7dcdff15450f941aa9162baf933e"
-  name = "github.com/gocelery/gocelery"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "b2f0dd7ec05bbc742030962676dcd27d62cea6d1"
-
-[[projects]]
   digest = "1:38ec74012390146c45af1f92d46e5382b50531247929ff3a685d2b2be65155ac"
   name = "github.com/gomodule/redigo"
   packages = [
@@ -40,7 +32,6 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/gocelery/gocelery",
     "github.com/gomodule/redigo/redis",
     "github.com/satori/go.uuid",
     "github.com/streadway/amqp",

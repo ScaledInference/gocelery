@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/gocelery/gocelery"
+	"github.com/ScaledInference/gocelery"
 )
 
 // Run Celery Worker First!

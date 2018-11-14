@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/gocelery/gocelery"
+	"github.com/ScaledInference/gocelery"
 )
 
 // Celery Task using args

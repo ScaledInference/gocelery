@@ -1,6 +1,7 @@
 package gocelery
 
 import (
+	"context"
 	"fmt"
 	"time"
 )
