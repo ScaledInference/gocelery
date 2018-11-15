@@ -1,7 +1,7 @@
 
 [[constraint]]
-  branch = "master"
   name = "github.com/satori/go.uuid"
+  revision = "b2ce2384e17bbe0c6d34077efa39dbab3e09123b"
 
 [[constraint]]
   name = "github.com/gomodule/redigo"
