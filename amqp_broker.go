@@ -157,16 +157,20 @@ func (b *AMQPCeleryBroker) SendCeleryMessage(message *CeleryMessage) error {
 
 // GetTaskMessage retrieves task message from AMQP queue
 func (b *AMQPCeleryBroker) GetTaskMessage() (*TaskMessage, error) {
-	delivery := <-b.consumingChannel
-	err := delivery.Ack(false)
-	if err != nil {
-		return nil, err
+	select {
+	case delivery := <-b.consumingChannel:
+		err := delivery.Ack(false)
+		if err != nil {
+			return nil, err
+		}
+		var taskMessage TaskMessage
+		if err := json.Unmarshal(delivery.Body, &taskMessage); err != nil {
+			return nil, err
+		}
+		return &taskMessage, nil
+	default:
+		return nil, nil
 	}
-	var taskMessage TaskMessage
-	if err := json.Unmarshal(delivery.Body, &taskMessage); err != nil {
-		return nil, err
-	}
-	return &taskMessage, nil
 }
 
 // CreateExchange declares AMQP exchange with stored configuration
