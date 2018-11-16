@@ -61,7 +61,7 @@ func main() {
 	}
 
 	// check if result is ready
-	isReady, err := asyncResult.Ready()
+	isReady, err := asyncResult.IsComplete()
 	if err != nil {
 		panic(err)
 	}

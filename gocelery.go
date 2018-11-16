@@ -157,8 +157,8 @@ func (ar *AsyncResult) AsyncGet() (interface{}, error) {
 	return val.Result, nil
 }
 
-// Ready checks if actual result is ready
-func (ar *AsyncResult) Ready() (bool, error) {
+// IsComplete checks if actual result is ready
+func (ar *AsyncResult) IsComplete() (bool, error) {
 	if ar.result != nil {
 		return true, nil
 	}
@@ -167,5 +167,5 @@ func (ar *AsyncResult) Ready() (bool, error) {
 		return false, err
 	}
 	ar.result = val
-	return (val != nil), nil
+	return val != nil, nil
 }
