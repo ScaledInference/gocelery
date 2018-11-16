@@ -2,20 +2,13 @@
 
 Go Client/Server for Celery Distributed Task Queue
 
-[![Build Status](https://travis-ci.org/shicky/gocelery.svg?branch=master)](https://travis-ci.org/shicky/gocelery)
-[![Coverage Status](https://coveralls.io/repos/github/shicky/gocelery/badge.svg?branch=master)](https://coveralls.io/github/shicky/gocelery?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/shicky/gocelery)](https://goreportcard.com/report/github.com/shicky/gocelery)
 [![GoDoc](https://godoc.org/github.com/shicky/gocelery?status.svg)](https://godoc.org/github.com/shicky/gocelery)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/shicky/gocelery/blob/master/LICENSE)
-[![motivation](https://img.shields.io/badge/made%20with-%E2%99%A1-ff69b4.svg)](https://github.com/shicky/gocelery)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgocelery%2Fgocelery.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgocelery%2Fgocelery?ref=badge_shield)
 
 ## Why?
 
-Having being involved in a number of projects migrating server from python to go, I have realized Go can help improve performance of existing python web applications.
-Celery distributed tasks are used heavily in many python web applications and this library allows you to implement celery workers in Go as well as being able to submit celery tasks in Go.
-
-You can also use this library as pure go distributed task queue.
+We have had a misfortune of choosing Celery for a distributed task queue. This provides us with a semblance of a Go interface with it. 
+This has diverged from upstream to suit our needs better. 
 
 ## Go Celery Worker in Action
 
