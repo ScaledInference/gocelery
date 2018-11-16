@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/ScaledInference/gocelery"
@@ -57,22 +56,19 @@ func main() {
 	celeryBroker := gocelery.NewAMQPCeleryBroker("amqp://")
 	celeryBackend := gocelery.NewAMQPCeleryBackend("amqp://")
 
-	log.Println("=== main.go:59 configuring")
 	// Configure with 2 celery workers
 	celeryClient, err := gocelery.NewCeleryClient(celeryBroker, celeryBackend, 2)
 	if err != nil {
 		panic(err)
 	}
 
-	log.Println("=== main.go:59 registering")
 	// worker.add name reflects "add" task method found in "worker.py"
 	// this worker uses args
 	celeryClient.Register("test_celery.tasks.longtime_add", add)
 	celeryClient.Register("test_celery.tasks.add_reflect", &AddTask{})
 
-	log.Println("=== main.go:73 running")
-	// Start Worker - blocking method
-	go celeryClient.StartWorker()
+	// Start Worker - non blocking method
+	celeryClient.StartWorker()
 	// Wait 30 seconds and stop all workers
 	time.Sleep(30 * time.Second)
 	celeryClient.StopWorker()
