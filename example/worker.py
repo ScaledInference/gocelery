@@ -6,8 +6,7 @@ from celery import Celery
 #     backend='redis://localhost:6379'
 # )
 #
-# using AMQP instead
-app = Celery('worker', backend='ampq://', broker='amqp://')
+app = Celery('example', backend='amqp://', broker='amqp://')
 
 app.conf.update(
     CELERY_TASK_SERIALIZER='json',
@@ -16,10 +15,12 @@ app.conf.update(
     CELERY_ENABLE_UTC=True,
 )
 
+
 @app.task
 def add(x, y):
     print(f'ADDING{x}, {y}')
     return x + y
+
 
 @app.task
 def add_reflect(x, y):

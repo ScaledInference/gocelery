@@ -94,7 +94,7 @@ type CeleryTask interface {
 	RunTask() (interface{}, error)
 }
 
-// AsyncResult is pending result
+// AsyncResult is a pending result of a job. It isn't thread-safe.
 type AsyncResult struct {
 	taskID  string
 	backend CeleryBackend
